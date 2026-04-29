@@ -9,8 +9,8 @@ import java.rmi.registry.Registry;
 public class ClientMain {
     public static void main(String[] args) {
         try {
-            MatrixWorker worker1 = connect("localhost", 1099);
-//            MatrixWorker worker2 = connect("localhost", 1100);
+            MatrixWorker worker1 = connect("100.102.127.105", 1099);
+            MatrixWorker worker2 = connect("100.64.193.5", 1100);
 
             int[][] A = {
                     {1, 2},
@@ -28,18 +28,16 @@ public class ClientMain {
             int[][] part1 = sliceRows(A, 0, mid);
             int[][] part2 = sliceRows(A, mid, A.length);
 
-            PartialResult r1 = worker1.multiplyRows(A, B, 0);
-//            PartialResult r2 = worker2.multiplyRows(part2, B, mid);
+            PartialResult r1 = worker1.multiplyRows(part1, B, 0);
+            PartialResult r2 = worker2.multiplyRows(part2, B, mid);
 
 
-//            int[][] finalResult = new int[A.length][B[0].length];
-//
-//            merge(finalResult, r1);
-//            merge(finalResult, r2);
+            int[][] finalResult = new int[A.length][B[0].length];
 
-//            printMatrix(finalResult);
+            merge(finalResult, r1);
+            merge(finalResult, r2);
 
-            printMatrix(r1.getRows());
+            printMatrix(finalResult);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
