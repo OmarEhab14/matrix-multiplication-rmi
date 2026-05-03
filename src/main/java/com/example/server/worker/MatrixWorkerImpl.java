@@ -1,4 +1,4 @@
-package com.example.server;
+package com.example.server.worker;
 
 import com.example.common.MatrixWorker;
 import com.example.common.PartialResult;

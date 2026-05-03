@@ -1,4 +1,4 @@
-package com.example.server;
+package com.example.server.worker;
 
 import com.example.common.MatrixWorker;
 
@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class ServerMain {
+public class WorkerServerMain {
     public static void main(String[] args) throws RemoteException {
         if (args.length < 1) {
             System.err.println("Usage: java ServerMain <port>");
@@ -16,7 +16,6 @@ public class ServerMain {
         MatrixWorker worker = new MatrixWorkerImpl();
         Registry registry = LocateRegistry.createRegistry(port);
         registry.rebind("MatrixWorker", worker);
-        System.out.println("Server is running on port " + port);
-        System.out.println("Worker name: MatrixWorker");
+        System.out.println("Worker Server is running on port " + port);
     }
 }
